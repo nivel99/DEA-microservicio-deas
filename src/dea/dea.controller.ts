@@ -6,11 +6,13 @@ import {
   Get,
   Param,
   ParseIntPipe,
-  Delete
+  Delete,
+  Patch,
 } from '@nestjs/common';
 import { CreateDeaDto } from './dto/create-dea.dto';
 import { DeaService } from './dea.service';
 import { Dea } from './dea.entity';
+import { UpdateDeaDto } from './dto/update-dea-dto';
 
 @Controller('dea')
 export class DeaController {
@@ -34,5 +36,14 @@ export class DeaController {
   @Delete(':DEA_ID')
   deleteDea(@Param('DEA_ID', ParseIntPipe) id: number) {
     return this.deaService.deleteDea(id);
+  }
+
+  @Patch(':DEA_ID')
+  updateDea(
+    @Param('DEA_ID', ParseIntPipe) id: number,
+    @Body()
+    dea: UpdateDeaDto,
+  ) {
+    return this.deaService.updateDea(id, dea);
   }
 }

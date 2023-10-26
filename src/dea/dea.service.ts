@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Dea } from './dea.entity';
 import { CreateDeaDto } from './dto/create-dea.dto';
+import { UpdateDeaDto } from './dto/update-dea-dto';
 
 @Injectable()
 export class DeaService {
@@ -28,5 +29,9 @@ export class DeaService {
 
   deleteDea(DEA_ID: number) {
     return this.deaRepository.delete({ DEA_ID });
+  }
+
+  updateDea(DEA_ID: number, dea: UpdateDeaDto) {
+    return this.deaRepository.update({ DEA_ID }, dea);
   }
 }
