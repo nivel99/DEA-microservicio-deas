@@ -8,6 +8,6 @@ import { Dea } from './dea.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Dea])],
   controllers: [DeaController],
-  providers: [DeaService]
+  providers: [DeaService],
 })
 export class DeaModule {}

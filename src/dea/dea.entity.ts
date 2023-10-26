@@ -1,8 +1,8 @@
 //dea.entity.ts
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name:'TBL_DEA'})
-export class Dea{
+@Entity({ name: 'TBL_DEA' })
+export class Dea {
 
     @PrimaryGeneratedColumn()
     DEA_ID:number;

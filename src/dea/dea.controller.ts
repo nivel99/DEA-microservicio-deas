@@ -1,20 +1,32 @@
 //dea.controller.ts
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { CreateDeaDto } from './dto/create-dea.dto';
 import { DeaService } from './dea.service';
+import { Dea } from './dea.entity';
 
 @Controller('dea')
 export class DeaController {
+  constructor(private deaService: DeaService) {}
 
-    constructor(private deaService:DeaService){}
+  @Get()
+  getDeas(): Promise<Dea[]> {
+    return this.deaService.getDeas();
+  }
 
-    @Get()
-    getDeas(){
-        return this.deaService.getDeas();
-    }
+  @Get(':id')
+  getDea(@Param('id', ParseIntPipe) id: number): Promise<Dea> {
+    return this.deaService.getDea(id);
+  }
 
-    @Post()
-    createDea(@Body() newDea: CreateDeaDto){
-     return this.deaService.createDea(newDea)
-    }
+  @Post()
+  createDea(@Body() newDea: CreateDeaDto): Promise<Dea> {
+    return this.deaService.createDea(newDea);
+  }
 }
