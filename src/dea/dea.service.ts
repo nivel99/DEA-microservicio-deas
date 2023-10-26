@@ -13,4 +13,8 @@ export class DeaService {
      const newDea = this.deaRepository.create(dea);
      return this.deaRepository.save(newDea);
     }
+
+    getDeas(){
+        return this.deaRepository.find()
+    }
 }
