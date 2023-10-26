@@ -25,4 +25,8 @@ export class DeaService {
       },
     });
   }
+
+  deleteDea(DEA_ID: number) {
+    return this.deaRepository.delete({ DEA_ID });
+  }
 }

@@ -6,6 +6,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Delete
 } from '@nestjs/common';
 import { CreateDeaDto } from './dto/create-dea.dto';
 import { DeaService } from './dea.service';
@@ -28,5 +29,10 @@ export class DeaController {
   @Post()
   createDea(@Body() newDea: CreateDeaDto): Promise<Dea> {
     return this.deaService.createDea(newDea);
+  }
+
+  @Delete(':DEA_ID')
+  deleteDea(@Param('DEA_ID', ParseIntPipe) id: number) {
+    return this.deaService.deleteDea(id);
   }
 }
